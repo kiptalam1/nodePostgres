@@ -9,4 +9,6 @@ router.post("/new", validateUser, userController.createUsernamePost);
 
 router.get("/", userController.getUsernames);
 
+router.get("/delete", userController.deleteAllUsernames);
+
 module.exports = router;
