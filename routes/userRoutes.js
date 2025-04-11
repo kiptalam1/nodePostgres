@@ -3,8 +3,10 @@ const userController = require("../controllers/userController");
 const router = Router();
 const validateUser = require("../middlewares/userValidation");
 
-router.get("/new", userController.getUser);
+router.get("/new", userController.createUsernameGet);
 
-router.post("/new", validateUser, userController.postUser);
+router.post("/new", validateUser, userController.createUsernamePost);
+
+router.get("/", userController.getUsernames);
 
 module.exports = router;

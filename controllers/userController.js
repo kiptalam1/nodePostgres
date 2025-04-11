@@ -1,14 +1,27 @@
-function getUser(req, res) {
-	res.render("userForm");
+const db = require("../db/queries");
+
+async function getUsernames(req, res) {
+	const usernames = await db.getAllUsernames();
+	console.log("Usernames: ", usernames);
+	// res.send("Usernames: " + usernames.map((user) => user.username).join(", "));
+	res.render("index", { usernames })
 }
 
-function postUser(req, res) {
-	console.log("username to be saved: ", req.body.username);
-	// success: render form again but with no errors
-	//res.render("userForm", { errors: []});
+function createUsernameGet(req, res) {
+	res.render("userForm", {
+		errors: [],
+		userName: "",
+	});
+}
+
+async function createUsernamePost(req, res) {
+	const { username } = req.body;
+	await db.insertUsername(username);
+	res.redirect("./");
 }
 
 module.exports = {
-	getUser,
-	postUser,
+	getUsernames,
+	createUsernameGet,
+	createUsernamePost,
 };

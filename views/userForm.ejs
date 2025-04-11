@@ -7,6 +7,16 @@
 	</head>
 	<body>
 		<h1>User Form</h1>
+		<form action="/new" method="post">
+			<input
+				type="text"
+				name="username"
+				placeholder="Enter your name"
+				value="<%= typeof userName !== 'undefined' ? userName : '' %>"
+			/>
+			<button>Submit</button>
+		</form>
+
 		<% if (errors && errors.length > 0) { %>
 		<ul style="color: red">
 			<% errors.forEach(error => { %>
@@ -14,14 +24,5 @@
 			<% }) %>
 		</ul>
 		<% } %>
-		<form action="/new" method="post">
-			<input
-				type="text"
-				placeholder="enter your name"
-				name="username"
-				required
-			/>
-			<button type="submit">Submit</button>
-		</form>
 	</body>
 </html>
